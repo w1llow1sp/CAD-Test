@@ -9,7 +9,7 @@ export default function Home() {
             title="Home | Test Task Website"
             description="Welcome to our website with a contact form and YouTube video."
         />
-        <main className="container mx-auto py-8">
+        <main className="container mx-auto py-8 shadow-lg">
             <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                     <h1 className="text-3xl font-bold mb-4">Welcome to Our Website</h1>
