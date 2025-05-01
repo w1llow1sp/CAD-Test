@@ -1,10 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Spin } from 'antd';
-import { useInfiniteScroll } from '@/features/infinite-scroll/lib/useInfiniteScroll';
+import {motion} from 'framer-motion';
+import {Spin} from 'antd';
+import {useInfiniteScroll} from '@/features/infinite-scroll/lib/useInfiniteScroll';
 import {ArticleCard} from "@/shared/ui";
-
 
 interface Article {
     id: number;
@@ -13,19 +12,14 @@ interface Article {
 }
 
 export default function ArticlesSection() {
-    // Имитация загрузки данных
     const fetchArticles = async (page: number) => {
-        await new Promise((resolve) => setTimeout(resolve, 1000)); // Задержка для имитации API
-        const newArticles: Article[] = Array.from({ length: 6 }, (_, index) => ({
-            id: (page - 1) * 6 + index + 1,
-            title: 'Title',
-            description:
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam mattis, leo et condimentum.',
-        }));
-        return newArticles;
-    };
-
-    const { items: articles, hasMore, isLoading, observerRef } = useInfiniteScroll<Article>({
+        const response = await fetch(`api/articles?page=${page}`)
+        if (!response.ok) {
+            throw new Error('Failed to fetch articles');
+        }
+        return response.json()
+    }
+    const {items: articles, hasMore, isLoading, observerRef} = useInfiniteScroll<Article>({
         fetchData: fetchArticles,
         maxItems: 35,
     });
@@ -40,18 +34,18 @@ export default function ArticlesSection() {
                     {articles.map((article) => (
                         <motion.div
                             key={article.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
+                            initial={{opacity: 0, y: 20}}
+                            animate={{opacity: 1, y: 0}}
+                            transition={{duration: 0.5}}
                             className="group"
                         >
-                            <ArticleCard article={article} />
+                            <ArticleCard article={article}/>
                         </motion.div>
                     ))}
                 </div>
                 {hasMore && (
                     <div ref={observerRef} className="h-10 flex justify-center items-center mt-8">
-                        <Spin size="large" spinning={isLoading} />
+                        <Spin size="large" spinning={isLoading}/>
                     </div>
                 )}
             </div>

@@ -3,6 +3,7 @@ import {NextSeo} from "next-seo";
 import Link from "next/link";
 import HeroSection from "@/app/mainPage/ui/HeroSection";
 import ArticlesSection from "@/app/mainPage/ui/ArticlesSection";
+import ContactSection from "@/app/mainPage/ui/ContactSection";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <main className="container mx-auto py-8 shadow-lg">
             <HeroSection/>
             <ArticlesSection/>
+            <ContactSection/>
         </main>
     </>
   );

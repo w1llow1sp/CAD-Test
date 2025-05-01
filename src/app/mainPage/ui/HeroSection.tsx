@@ -4,7 +4,7 @@ import {YouTubeEmbed} from "@/entities/youtube-video/ui/YouTubeEmbed";
 
 export default function HeroSection() {
     return (
-        <section className="bg-blue-100 py-12 md:py-20 shadow-lg w-full">
+        <section className="section py-12 md:py-20 shadow-lg w-full">
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                     {/* Текстовая часть */}
