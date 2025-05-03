@@ -5,10 +5,10 @@ export async function GET (request:Request) {
     const {searchParams} = new URL(request.url)
     const page = parseInt(searchParams.get('page') || '1')
     const perPage = 6;
-    const maxItems = 35;
+    const maxItems = 36;
 
     // Имитация задержки API
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
 // Рассчитываем индексы
     const startIndex = (page - 1) * perPage;

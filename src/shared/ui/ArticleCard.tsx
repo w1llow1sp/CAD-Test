@@ -1,6 +1,7 @@
 'use client';
 
-import { Card } from 'antd';
+import {Card} from 'antd';
+import styled from "styled-components";
 
 interface Article {
     id: number;
@@ -8,16 +9,40 @@ interface Article {
     description: string;
 }
 
-export default function ArticleCard({ article }: { article: Article }) {
+/**     STYLED      **/
+const StyledCard = styled(Card)`
+    background-color: var(--background);
+    backdrop-filter: blur(12px);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /*  */
+
+    transition-property: transform, translate, scale, rotate;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+`
+
+const StyledHeading = styled.h3`
+    color: var(--textColor);
+    font-size: var(--textSectionHeight);
+    font-weight: 600;
+    letter-spacing: var(--letterSpacing);
+`
+
+const StyledText = styled.p`
+    color: var(--articleColor);
+    font-size: var(--mainTextHeight);
+`
+
+/**     STYLED      **/
+
+export default function ArticleCard({article}: { article: Article }) {
     return (
-        <Card
-            hoverable
-            className="bg-white/80 backdrop-blur-md rounded-lg shadow-md transition-transform group-hover:scale-105"
-        >
-            <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-blue-500 transition-colors">
+        <StyledCard
+            hoverable>
+            <StyledHeading>
                 {article.title}
-            </h3>
-            <p className="text-gray-600">{article.description}</p>
-        </Card>
+            </StyledHeading>
+            <StyledText>{article.description}</StyledText>
+        </StyledCard>
     );
 }

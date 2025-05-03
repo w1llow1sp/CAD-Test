@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
+    "@types/styled-components": "^5.1.34",
     "antd": "^5.24.9",
     "autoprefixer": "^10.4.21",
     "axe-core": "^4.10.3",
@@ -22,18 +23,17 @@
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.1",
     "react-lite-youtube-embed": "^2.5.1",
+    "styled-components": "^6.1.17",
     "uuid": "^11.1.0",
     "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
-    "tailwindcss": "^4.1.4",
     "typescript": "^5"
   }
 }

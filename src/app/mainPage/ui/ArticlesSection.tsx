@@ -3,13 +3,65 @@
 import {motion} from 'framer-motion';
 import {Spin} from 'antd';
 import {useInfiniteScroll} from '@/features/infinite-scroll/lib/useInfiniteScroll';
-import {ArticleCard} from "@/shared/ui";
+import {ArticleCard, ContactUsButton} from "@/shared/ui";
+import styled from "styled-components";
 
 interface Article {
     id: number;
     title: string;
     description: string;
 }
+
+/**     STYLED      **/
+
+//className=" md:py-20 bg-white"
+const StyledSection = styled.section`
+    padding-block: 12px;
+    background-color: var(--background);
+    @media (width >= 48rem) {
+        padding-block: 20px;
+    }
+`
+
+const StyledContainer = styled.div`
+    margin-inline: auto;
+    padding-block: 4px;
+`
+
+const StyledSectionHeader = styled.h2`
+    font-size: var(--mainHeaderHeight);
+    font-weight: 600;
+    color: var(--headerColor);
+    margin-bottom: 8px;
+    text-align: center;
+`
+
+const StyledMotionDiv = styled(motion.div)`
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    @media (width >= 40rem) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    @media (width >= 64rem) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    gap: 20px;
+`
+
+const StyledSpinSection = styled.div`
+    display: flex;
+    height: 10px;
+    justify-content: center;
+    justify-items: center;
+    margin-top: 8px;
+`
+const StyledButtonSection = styled.div`
+    display: flex;
+    justify-content: center;
+    padding-block: 50px;
+`
+
+/**     STYLED      **/
 
 export default function ArticlesSection() {
     const fetchArticles = async (page: number) => {
@@ -25,30 +77,34 @@ export default function ArticlesSection() {
     });
 
     return (
-        <section className="py-12 md:py-20 bg-white">
-            <div className="container mx-auto px-4">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 text-center">
+        <StyledSection>
+            <StyledContainer>
+                <StyledSectionHeader>
                     Also very important title
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                </StyledSectionHeader>
+                <StyledMotionDiv>
                     {articles.map((article) => (
                         <motion.div
                             key={article.id}
                             initial={{opacity: 0, y: 20}}
                             animate={{opacity: 1, y: 0}}
                             transition={{duration: 0.5}}
-                            className="group"
                         >
                             <ArticleCard article={article}/>
                         </motion.div>
                     ))}
-                </div>
-                {hasMore && (
-                    <div ref={observerRef} className="h-10 flex justify-center items-center mt-8">
-                        <Spin size="large" spinning={isLoading}/>
-                    </div>
-                )}
-            </div>
-        </section>
+                </StyledMotionDiv>
+                {hasMore ? (
+                        <StyledSpinSection ref={observerRef}>
+                            <Spin size="large" spinning={isLoading}/>
+                        </StyledSpinSection>
+                    )
+                    : (
+                        <StyledButtonSection>
+                            <ContactUsButton/>
+                        </StyledButtonSection>
+                    )}
+            </StyledContainer>
+        </StyledSection>
     );
 }
