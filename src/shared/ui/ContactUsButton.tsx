@@ -23,6 +23,7 @@ export default function ContactUsButton() {
     return (
         <Link href="/contact">
             <StyledButton
+                role="button"
                 aria-label="Go to contact form">
                 Contact Us
             </StyledButton>

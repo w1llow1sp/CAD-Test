@@ -14,7 +14,6 @@ interface Article {
 
 /**     STYLED      **/
 
-//className=" md:py-20 bg-white"
 const StyledSection = styled.section`
     padding-block: 12px;
     background-color: var(--background);
@@ -73,22 +72,23 @@ export default function ArticlesSection() {
     }
     const {items: articles, hasMore, isLoading, observerRef} = useInfiniteScroll<Article>({
         fetchData: fetchArticles,
-        maxItems: 35,
+        maxItems: 36,
     });
 
     return (
         <StyledSection>
             <StyledContainer>
-                <StyledSectionHeader>
+                <StyledSectionHeader id="articles-heading">
                     Also very important title
                 </StyledSectionHeader>
-                <StyledMotionDiv>
+                <StyledMotionDiv role="list" aria-labelledby="articles-heading">
                     {articles.map((article) => (
                         <motion.div
                             key={article.id}
                             initial={{opacity: 0, y: 20}}
                             animate={{opacity: 1, y: 0}}
                             transition={{duration: 0.5}}
+                            role="listitem"
                         >
                             <ArticleCard article={article}/>
                         </motion.div>

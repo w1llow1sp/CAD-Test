@@ -7,6 +7,9 @@
   --headerColor: #0C0C0D;
   --textColor: #1E1E1E;
   --articleColor:#757575;
+  --inputColor:#1E1E1E;
+  --inputHoverColor: #363636;
+  --shadow:0 0 0 1px rgb(180, 180, 180);
 
   /* Font sizes*/
   --mainHeaderHeight:48px;

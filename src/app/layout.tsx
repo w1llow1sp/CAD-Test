@@ -4,10 +4,7 @@ import "./styles/globals.css";
 
 import {Footer, Header} from "@/shared/ui";
 
-const geistInter = Inter ({
-    variable:'--font-inter',
-    subsets:['latin']
-})
+const inter = Inter({ subsets: ['latin'] });
 
 
 
@@ -24,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistInter.variable}  antialiased`}
+        className={`${inter.className}  antialiased`}
       >
       <Header/>
         {children}
